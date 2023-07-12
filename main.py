@@ -50,7 +50,7 @@ def fractions_calculation():
                 f'/{int(sum[1] / gcd_usr(sum[0], sum[1]))}'
     result_product = f'{num1[0]}/{num1[1]} * {num2[0]}/{num2[1]} = {int(product[0] / gcd_usr(product[0], product[1]))}'\
                 f'/{int(product[1] / gcd_usr(product[0], product[1]))}'
-    return result_sum, result_product
+    print(f'{result_sum} \n{result_product}')
 
 def gcd_usr(a, b):
     a = abs(a)
