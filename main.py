@@ -46,13 +46,24 @@ def fractions_calculation():
     print('Введите дробное число в формате "a/b"')
     num1 = user_input_fractions('первое ')
     num2 = user_input_fractions('второе ')
-    lcm = lcm_usr(num1[1], num2[1])
-    sum = ((lcm / num1[1] * num1[0] + lcm / num2[1] * num2[0]), (lcm))
-    product = (num1[0] * num2[0], num1[1] * num2[1])
-    result_sum = f'{num1[0]}/{num1[1]} + {num2[0]}/{num2[1]} = {int(sum[0] / gcd_usr(sum[0], sum[1]))}'\
-                f'/{int(sum[1] / gcd_usr(sum[0], sum[1]))}'
-    result_product = f'{num1[0]}/{num1[1]} * {num2[0]}/{num2[1]} = {int(product[0] / gcd_usr(product[0], product[1]))}'\
-                f'/{int(product[1] / gcd_usr(product[0], product[1]))}'
+    if num1[0] == 0 or num2[0] == 0:
+        if num1[0] == num2[0]:
+            result_sum = f'{num1[0]} + {num2[0]} = 0'
+            result_product = f'{num1[0]} * {num2[0]} = 0'
+        elif num1[0] == 0:
+            result_sum = f'{num1[0]} + {num2[0]}/{num2[1]} = {num2[0]}/{num2[1]}'
+            result_product = f'{num1[0]} * {num2[0]}/{num2[1]} = 0'
+        else:
+            result_sum = f'{num1[0]}/{num1[1]} + {num2[0]} = {num1[0]}/{num1[1]}'
+            result_product = f'{num1[0]}/{num1[1]} * {num2[0]} = 0'
+    else:
+        lcm = lcm_usr(num1[1], num2[1])
+        sum = ((lcm / num1[1] * num1[0] + lcm / num2[1] * num2[0]), (lcm))
+        product = (num1[0] * num2[0], num1[1] * num2[1])
+        result_sum = f'{num1[0]}/{num1[1]} + {num2[0]}/{num2[1]} = {int(sum[0] / gcd_usr(sum[0], sum[1]))}'\
+                    f'/{int(sum[1] / gcd_usr(sum[0], sum[1]))}'
+        result_product = f'{num1[0]}/{num1[1]} * {num2[0]}/{num2[1]} = {int(product[0] / gcd_usr(product[0], product[1]))}'\
+                    f'/{int(product[1] / gcd_usr(product[0], product[1]))}'
     print(f'{result_sum} \n{result_product}')
 
 
@@ -88,18 +99,16 @@ def user_input_fractions(message):
                 continue
             else:
                 user_rat_num.append(1)
-        else:
-            try:
-                user_rat_num[0], user_rat_num[1] = int(user_rat_num[0]), int(user_rat_num[1])
-            except ValueError:
-                print('Введите корректное число')
-                continue
-            try:
-                1 / user_rat_num[0]
-                1 / user_rat_num[1]
-                break
-            except ZeroDivisionError:
-                print('Знаменатель не может быть нулём. Введите корректное число')
+        try:
+            user_rat_num[0], user_rat_num[1] = int(user_rat_num[0]), int(user_rat_num[1])
+        except ValueError:
+            print('Введите корректное число')
+            continue
+        try:
+            1 / user_rat_num[1]
+            break
+        except ZeroDivisionError:
+            print('Знаменатель не может быть нулём. Введите корректное число')
 
     return tuple(user_rat_num)
 
