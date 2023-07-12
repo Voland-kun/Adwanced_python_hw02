@@ -1,6 +1,6 @@
 def select_problem():
     while(True):
-        print('Выберите задачу: \n1.  Конвертор dec -> hex\n'
+        print('Выберите задачу: \n1. Конвертор dec -> hex\n'
               '2. Сложение-умножение неправильных дробей)')
         try:
             user_choice = user_input_number('соответствующее номеру задания ')
@@ -89,11 +89,17 @@ def user_input_fractions(message):
             else:
                 user_rat_num.append(1)
         try:
-            user_rat_num[0] == int(user_rat_num[0]) and user_rat_num[1] == int(user_rat_num[1])
             user_rat_num[0], user_rat_num[1] = int(user_rat_num[0]), int(user_rat_num[1])
-            break
         except ValueError:
             print('Введите корректное число')
+            continue
+        try:
+            1 / user_rat_num[0]
+            1 / user_rat_num[1]
+            break
+        except ZeroDivisionError:
+            print('Знаменатель не может быть нулём. Введите корректное число')
+
     return tuple(user_rat_num)
 
 
