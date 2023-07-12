@@ -88,17 +88,18 @@ def user_input_fractions(message):
                 continue
             else:
                 user_rat_num.append(1)
-        try:
-            user_rat_num[0], user_rat_num[1] = int(user_rat_num[0]), int(user_rat_num[1])
-        except ValueError:
-            print('Введите корректное число')
-            continue
-        try:
-            1 / user_rat_num[0]
-            1 / user_rat_num[1]
-            break
-        except ZeroDivisionError:
-            print('Знаменатель не может быть нулём. Введите корректное число')
+        else:
+            try:
+                user_rat_num[0], user_rat_num[1] = int(user_rat_num[0]), int(user_rat_num[1])
+            except ValueError:
+                print('Введите корректное число')
+                continue
+            try:
+                1 / user_rat_num[0]
+                1 / user_rat_num[1]
+                break
+            except ZeroDivisionError:
+                print('Знаменатель не может быть нулём. Введите корректное число')
 
     return tuple(user_rat_num)
 
