@@ -62,8 +62,9 @@ def fractions_calculation():
         product = (num1[0] * num2[0], num1[1] * num2[1])
         result_sum = f'{num1[0]}/{num1[1]} + {num2[0]}/{num2[1]} = {int(sum[0] / gcd_usr(sum[0], sum[1]))}'\
                     f'/{int(sum[1] / gcd_usr(sum[0], sum[1]))}'
-        result_product = f'{num1[0]}/{num1[1]} * {num2[0]}/{num2[1]} = {int(product[0] / gcd_usr(product[0], product[1]))}'\
-                    f'/{int(product[1] / gcd_usr(product[0], product[1]))}'
+        result_product = f'{num1[0]}/{num1[1]} * {num2[0]}/{num2[1]} = ' \
+                         f'{int(product[0] / gcd_usr(product[0], product[1]))} ' \
+                         f'/{int(product[1] / gcd_usr(product[0], product[1]))}'
     print(f'{result_sum} \n{result_product}')
 
 
