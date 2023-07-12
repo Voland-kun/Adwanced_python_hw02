@@ -18,6 +18,7 @@ def select_problem():
         except ValueError:
             print('Введите корректный номер задачи')
 
+
 def dec_to_hex_convert():
     hex_digits = '0123456789ABCDEF'
     result = ''
@@ -33,16 +34,18 @@ def dec_to_hex_convert():
     while user_num:
         result = hex_digits[user_num % 16] + result
         user_num //= 16
-    if original_num >= 0:
+    if original_num > 0:
         print(f'dec: {original_num} --> hex: 0x{result}')
+    elif original_num == 0:
+        print(f'dec: {original_num} --> hex: 0x0')
     else:
         print(f'dec: {original_num} --> hex: -0x{result}')
+
 
 def fractions_calculation():
     print('Введите дробное число в формате "a/b"')
     num1 = user_input_fractions('первое ')
     num2 = user_input_fractions('второе ')
-
     lcm = lcm_usr(num1[1], num2[1])
     sum = ((lcm / num1[1] * num1[0] + lcm / num2[1] * num2[0]), (lcm))
     product = (num1[0] * num2[0], num1[1] * num2[1])
@@ -51,6 +54,7 @@ def fractions_calculation():
     result_product = f'{num1[0]}/{num1[1]} * {num2[0]}/{num2[1]} = {int(product[0] / gcd_usr(product[0], product[1]))}'\
                 f'/{int(product[1] / gcd_usr(product[0], product[1]))}'
     print(f'{result_sum} \n{result_product}')
+
 
 def gcd_usr(a, b):
     a = abs(a)
@@ -68,8 +72,10 @@ def gcd_usr(a, b):
         remainder = greater % lesser
     return lesser
 
+
 def lcm_usr(a, b):
     return int(abs(a * b) / gcd_usr(a, b))
+
 
 def user_input_fractions(message):
     while True:
@@ -89,6 +95,7 @@ def user_input_fractions(message):
         except ValueError:
             print('Введите корректное число')
     return tuple(user_rat_num)
+
 
 def user_input_number(message):
     user_number = input(f'Введите {message}число:\n')
